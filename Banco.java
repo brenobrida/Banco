@@ -68,7 +68,7 @@ public class Banco {
 			
 	}
 	
-	public boolean transacao() {
+	/*public boolean transacao() {
 		
 	}
 	
@@ -82,5 +82,5 @@ public class Banco {
 	
 	public boolean transferir() {
 		
-	}
+	}*/
 }
