@@ -1,14 +1,13 @@
 package ExInicial;
 import java.util.Scanner;
 
-public class Movimentacao extends Conta{
+public class Movimentacao{
 	public static Scanner read = new Scanner(System.in);
 	private String descricao;
 	private float valor;
 	private boolean ds;
 	
-	public Movimentacao(Conta c, String descricao, float valor, boolean ds) {
-		super(c.numero, c.saldo, c.lespecial, c.lsaque, c.cespecial);
+	public Movimentacao(String descricao, float valor, boolean ds) {
 		this.descricao = descricao;
 		this.valor = valor;
 		this.ds = ds;
@@ -24,6 +23,6 @@ public class Movimentacao extends Conta{
 		System.out.print("Saque ou depósito? (S/D): ");
 		boolean ds = read.next().toUpperCase().charAt(0) == 'S';
 		
-		return new Movimentacao(this.Conta, d, v, ds);
+		return new Movimentacao(d, v, ds);
 	}
 }
