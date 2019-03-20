@@ -25,4 +25,16 @@ public class Movimentacao{
 		
 		return new Movimentacao(d, v, ds);
 	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public double getValor() {
+		return valor;
+	}
+
+	public boolean isDs() {
+		return ds;
+	}
 }

@@ -1,5 +1,5 @@
-
-public class PessoaJuridica  extends Cliente{
+package ExInicial;
+public class PessoaJuridica extends Cliente {
 
 	int CNPJ = 0;
 	
