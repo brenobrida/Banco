@@ -30,6 +30,14 @@ public class Conta {
 		return c;
 	}
 
+	public Movimentacao[] getM() {
+		return m;
+	}
+
+	public float getSaldo() {
+		return saldo;
+	}
+
 	public String getNumero() {
 		return numero;
 	}
