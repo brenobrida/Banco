@@ -26,7 +26,7 @@ public class Banco {
 	private int consultarPos() {
 		int k = -1;
 		
-		System.out.print("Número da conta: ");
+		System.out.print("NÃºmero da conta: ");
 		String n = read.next();
 		
 		for(int j = 0; j <= i; j++) {
@@ -41,7 +41,7 @@ public class Banco {
 		int op;
 		
 		do {
-			System.out.println("Menu:\n\n 1 - Conta Corrente\n 2 - Conta Poupança\nOpção: ");
+			System.out.println("Menu:\n\n 1 - Conta Corrente\n 2 - Conta PoupanÃ§a\nOpÃ§Ã£o: ");
 			op = read.nextInt();
 		} while(op < 1 || op > 2);
 		
@@ -69,8 +69,7 @@ public class Banco {
 			
 			ac[i] = null;
 		} else
-			System.out.println("Conta n�o encontrada!\n");
-			
+			System.out.println("Conta não encontrada!\n");			
 	}
 	
 	public void listarContas() {
@@ -87,7 +86,7 @@ public class Banco {
 		if(pos != -1) {
 			System.out.println("Saldo: R$" + ac[i].getSaldo());
 		} else
-			System.out.println("Conta n�o encontrada!\n");
+			System.out.println("Conta não encontrada!\n");
 	}
 	
 	public void emitirExtrato() {
@@ -103,14 +102,14 @@ public class Banco {
 			}
 			System.out.println("-------------------------");
 			
-			System.out.println("Dep�sitos:\n");
+			System.out.println("Depósitos:\n");
 			for(Movimentacao m: ac[pos].getM()) {
 				if(!m.isDs())
 					System.out.println(m.getDescricao() + " - " + m.getValor());
 			}
 			System.out.println("\n");
 		} else
-			System.out.println("Conta n�o encontrada!\n");
+			System.out.println("Conta não encontrada!\n");
 	}
 	
 	public void transacao() {
@@ -121,20 +120,4 @@ public class Banco {
 		ac[k].adicionarMovimentacao();
 		
 	}
-	
-	public void limiteTransacao() {
-		
-	}
-	
-	/*public float emitirSaldo() {
-		
-	}
-	
-	public Movimentacao[] emitirExtrato() {
-		
-	}
-	
-	public boolean transferir() {
-		
-	}*/
 }

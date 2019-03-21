@@ -62,6 +62,14 @@ public class Conta {
 		this.numero = numero;
 	}
 
+	public Movimentacao[] getM() {
+		return m;
+	}
+
+	public float getSaldo() {
+		return saldo;
+	}
+
 	public String getNumero() {
 		return numero;
 	}

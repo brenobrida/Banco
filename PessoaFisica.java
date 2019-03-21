@@ -1,6 +1,6 @@
 package ExInicial;
 
-public class PessoaFisica extends Cliente{
+public class PessoaFisica extends Cliente {
 
 	int cpf = 0;
 	String estcivil = null;
