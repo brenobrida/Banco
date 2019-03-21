@@ -69,7 +69,7 @@ public class Banco {
 
 			ac[i] = null;
 		} else
-			System.out.println("Conta não encontrada!\n");
+			System.out.println("Conta nï¿½o encontrada!\n");
 	}
 
 	public void listarContas() {
@@ -86,7 +86,7 @@ public class Banco {
 		if (pos != -1) {
 			System.out.println("Saldo: R$" + ac[i].getSaldo());
 		} else
-			System.out.println("Conta não encontrada!\n");
+			System.out.println("Conta nï¿½o encontrada!\n");
 	}
 
 	public void emitirExtrato() {
@@ -102,14 +102,14 @@ public class Banco {
 			}
 			System.out.println("-------------------------");
 
-			System.out.println("Depósitos:\n");
+			System.out.println("Depï¿½sitos:\n");
 			for (Movimentacao m : ac[pos].getM()) {
 				if (!m.isDs())
 					System.out.println(m.getDescricao() + " - " + m.getValor());
 			}
 			System.out.println("\n");
 		} else
-			System.out.println("Conta não encontrada!\n");
+			System.out.println("Conta nï¿½o encontrada!\n");
 	}
 
 	public void transacao() {
@@ -123,7 +123,7 @@ public class Banco {
 
 	public void transferencia(Conta a, Conta b) {
 
-		System.out.println("Digite o valor da transferência:");
+		System.out.println("Digite o valor da transferï¿½ncia:");
 		double valor = read.nextInt();
 
 		listarContas();
@@ -139,15 +139,15 @@ public class Banco {
 			if (pos2 != -1 && m == true) {
 				ac[pos1].saldo -= valor;
 				ac[pos2].saldo += valor;
-				System.out.println("Transferência concluida!");
+				System.out.println("Transferï¿½ncia concluida!");
 
 			} else
-				System.out.println("Conta não encontrada!");
+				System.out.println("Conta nï¿½o encontrada!");
 
 		} else
-			System.out.println("Conta não encontrada!");
+			System.out.println("Conta nï¿½o encontrada!");
 
-		System.out.println("Tranferência não concluida!");
+		System.out.println("Tranferï¿½ncia nï¿½o concluida!");
 
 	}
 }

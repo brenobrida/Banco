@@ -1,5 +1,6 @@
 package ExInicial;
 
+
 public class ContaCorrente extends Conta {
 	private boolean cespecial;
 	private double lespecial;
@@ -8,6 +9,7 @@ public class ContaCorrente extends Conta {
 		super(c.numero, c.saldo, c.lsaque);
 		this.cespecial = cespecial;
 		this.lespecial = lespecial;
+
 	}
 
 	public static ContaCorrente novaCC() {
@@ -40,14 +42,14 @@ public class ContaCorrente extends Conta {
 					saldo -= sa;
 				
 				System.out.println("Saque efetuado com sucesso!");
-				System.out.println("Seu novo saldo é de: " + saldo);
+				System.out.println("Seu novo saldo Ã© de: " + saldo);
 			} else {
 				System.out.println("Saldo insuficiente!");
 			}
 		} else {
 			saldo += sa;
-			System.out.println("Depósito efetuado com sucesso!");
-			System.out.println("Seu novo saldo é de: " + saldo);
+			System.out.println("DepÃ³sito efetuado com sucesso!");
+			System.out.println("Seu novo saldo Ã© de: " + saldo);
 		}
 	}
 
@@ -60,5 +62,3 @@ public class ContaCorrente extends Conta {
 
 		return l;
 	}
-
-}

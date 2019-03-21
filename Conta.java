@@ -48,25 +48,3 @@ public class Conta {
 	public void setLsaque(float lsaque) {
 		this.lsaque = lsaque;
 	}
-
-
-	public void setM(Movimentacao[] m) {
-		this.m = m;
-	}
-
-	public void setNumero(String numero) {
-		this.numero = numero;
-	}
-
-	public Movimentacao[] getM() {
-		return m;
-	}
-
-	public float getSaldo() {
-		return saldo;
-	}
-
-	public String getNumero() {
-		return numero;
-	}
-}
