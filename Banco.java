@@ -58,21 +58,75 @@ public class Banco {
 	}
 	
 	public void excluirConta() {
+		listarContas();
+		
 		int pos = consultarPos();
 		
 		if(pos != -1) {
-			for(int j = pos; j <= i; j++) {
-				
+			for(int j = pos; j < i; j++) {
+				ac[j] = ac[j + 1];
 			}
-		}
+			
+			ac[i] = null;
+		} else
+			System.out.println("Conta não encontrada!\n");
 			
 	}
 	
-	/*public boolean transacao() {
+	public void listarContas() {
+		for(int j = 0; j <= i; j++) {
+			System.out.println(ac[j].getNumero());
+		}
+	}
+	
+	public void emitirSaldo() {
+		listarContas();
+		
+		int pos = consultarPos();
+		
+		if(pos != -1) {
+			System.out.println("Saldo: R$" + ac[i].getSaldo());
+		} else
+			System.out.println("Conta não encontrada!\n");
+	}
+	
+	public void emitirExtrato() {
+		listarContas();
+		
+		int pos = consultarPos();
+		
+		if(pos != -1) {
+			System.out.println("Saques:\n");
+			for(Movimentacao m: ac[pos].getM()) {
+				if(m.isDs())
+					System.out.println(m.getDescricao() + " - " + m.getValor());
+			}
+			System.out.println("-------------------------");
+			
+			System.out.println("Depósitos:\n");
+			for(Movimentacao m: ac[pos].getM()) {
+				if(!m.isDs())
+					System.out.println(m.getDescricao() + " - " + m.getValor());
+			}
+			System.out.println("\n");
+		} else
+			System.out.println("Conta não encontrada!\n");
+	}
+	
+	public void transacao() {
+		int k;
+		
+		k = consultarPos();
+		
+		ac[k].adicionarMovimentacao();
 		
 	}
 	
-	public float emitirSaldo() {
+	public void limiteTransacao() {
+		
+	}
+	
+	/*public float emitirSaldo() {
 		
 	}
 	
