@@ -1,102 +1,153 @@
-import java.util.ArrayList;
+package ExInicial;
+
+import java.util.Scanner;
 
 public class Banco {
-	private static int next_id = 0;
-	private ArrayList<Conta> list = new ArrayList();
+	public static Scanner read = new Scanner(System.in);
+	private String nome;
+	private int i = 0;
+	private Conta[] ac;
 
-
-	public ArrayList<Conta> getList() {
-		return list;
+	public Banco(String nome, int q) {
+		this.nome = nome;
+		ac = new Conta[q];
 	}
 
-	public void setList(ArrayList<Conta> list) {
-		this.list = list;
+	public Banco novoBanco() {
+		System.out.print("Digite o nome do banco: ");
+		String n = read.next();
+
+		System.out.print("Digite a quantidade de contas: ");
+		int q = read.nextInt();
+
+		return new Banco(n, q);
 	}
 
-	public String listar_clientes() {
-		String str = new String();
-		int i = 0;
-		for(; i < list.size(); i++) {
-			str += (i+1) + ". " + list.get(i).getNumero() + "\n";
+	private int consultarPos() {
+		int k = -1;
+
+		System.out.print("NÃºmero da conta: ");
+		String n = read.next();
+
+		for (int j = 0; j <= i; j++) {
+			if (ac[j].getNumero() == n)
+				k = j;
 		}
 
-		str += (i+1) + ". Nenhum\n";
-		return str;
+		return k;
 	}
 
-	void salvar_conta(Conta conta) {
-		list.add(conta);
-	}
-	
-	void criar_conta(int tipo) {
-		Conta conta = new Conta();
-		if(tipo == 1) {
-			conta = new ContaCorrente();
-		} else if(tipo == 2) {
-			conta = new ContaPoupanca();
+	public void criarConta() {
+		int op;
+
+		do {
+			System.out.println("Menu:\n\n 1 - Conta Corrente\n 2 - Conta PoupanÃ§a\nOpÃ§Ã£o: ");
+			op = read.nextInt();
+		} while (op < 1 || op > 2);
+
+		switch (op) {
+		case 1:
+			ac[i] = ContaCorrente.novaCC();
+			i++;
+			break;
+		case 2:
+			ac[i] = ContaPoupanca.novaCP();
+			i++;
+			break;
 		}
-
-		conta.setNumero(get_id_format(next_id));
-		next_id++;
-		this.salvar_conta(conta);
-
-		System.out.print("A conta de numero (" + conta.getNumero() + ") foi criada.\n");
-	}
-	
-	String get_id_format(int id) {
-
-		int n = (""+id).length();
-
-		String str = new String();
-		for(int i = n; i < 6; i++) {
-			str += "0";
-		}
-		str += id;
-
-		return str;
 	}
 
-	void deletar_conta(String id) {
-		for(int i = 0; i < list.size(); i++) {
-			if(list.get(i).getNumero().equals(id)) {
-				int j;
-				for(j = i+1; j < list.size(); j++) {
-					list.add(j-1, list.get(j));
-				}
-				if(j < list.size()) {
-					list.remove(j);
-				} else {
-					list.remove(i);
-				}
-				break;
+	public void excluirConta() {
+		listarContas();
+
+		int pos = consultarPos();
+
+		if (pos != -1) {
+			for (int j = pos; j < i; j++) {
+				ac[j] = ac[j + 1];
 			}
-		}
-		System.out.print("ssssss " + list.size() + " ssss\n");
+
+			ac[i] = null;
+		} else
+			System.out.println("Conta não encontrada!\n");
 	}
-	
-	Conta selecionar_conta(String id) {
-		for(int i = 0; i < list.size(); i++) {
-			if(list.get(i).getNumero().equals(id)) {
-				return list.get(i);
+
+	public void listarContas() {
+		for (int j = 0; j <= i; j++) {
+			System.out.println(ac[j].getNumero());
+		}
+	}
+
+	public void emitirSaldo() {
+		listarContas();
+
+		int pos = consultarPos();
+
+		if (pos != -1) {
+			System.out.println("Saldo: R$" + ac[i].getSaldo());
+		} else
+			System.out.println("Conta não encontrada!\n");
+	}
+
+	public void emitirExtrato() {
+		listarContas();
+
+		int pos = consultarPos();
+
+		if (pos != -1) {
+			System.out.println("Saques:\n");
+			for (Movimentacao m : ac[pos].getM()) {
+				if (m.isDs())
+					System.out.println(m.getDescricao() + " - " + m.getValor());
 			}
-		}
+			System.out.println("-------------------------");
 
-		return null;
+			System.out.println("Depósitos:\n");
+			for (Movimentacao m : ac[pos].getM()) {
+				if (!m.isDs())
+					System.out.println(m.getDescricao() + " - " + m.getValor());
+			}
+			System.out.println("\n");
+		} else
+			System.out.println("Conta não encontrada!\n");
 	}
-	
-	void montar_movimentacao(String tipo, Conta c1, Conta c2, double valor) {
 
-		Movimentacao movimentacao = new Movimentacao();
-		movimentacao.setTipo(tipo);
+	public void transacao() {
+		int k;
 
-		movimentacao.setTipo(tipo);
-		movimentacao.setConta_um(c1);
-		movimentacao.setConta_dois(c2);
-		movimentacao.setValor(valor);
-		movimentacao.executar_movimentacao();
-		c1.getMovimentacao_list().add(movimentacao);
-		if(c2 != null) c2.getMovimentacao_list().add(movimentacao);
+		k = consultarPos();
+
+		ac[k].adicionarMovimentacao();
+
 	}
-	
-	
+
+	public void transferencia(Conta a, Conta b) {
+
+		System.out.println("Digite o valor da transferência:");
+		double valor = read.nextInt();
+
+		listarContas();
+
+		int pos1 = consultarPos();
+
+		if (pos1 != -1) {
+			int pos2 = consultarPos();
+			boolean m = ac[pos1].verificaLimite(valor);
+			
+			
+
+			if (pos2 != -1 && m == true) {
+				ac[pos1].saldo -= valor;
+				ac[pos2].saldo += valor;
+				System.out.println("Transferência concluida!");
+
+			} else
+				System.out.println("Conta não encontrada!");
+
+		} else
+			System.out.println("Conta não encontrada!");
+
+		System.out.println("Tranferência não concluida!");
+
+	}
 }

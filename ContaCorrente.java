@@ -1,21 +1,64 @@
+package ExInicial;
 
 public class ContaCorrente extends Conta {
-	double lim_cheque_especial;
-	double lim_saldo_final = 0 + lim_cheque_especial;
-	
-	
-	public double getLim_cheque_especial() {
-		return lim_cheque_especial;
+	private boolean cespecial;
+	private double lespecial;
+
+	public ContaCorrente(Conta c, boolean cespecial, double lespecial) {
+		super(c.numero, c.saldo, c.lsaque);
+		this.cespecial = cespecial;
+		this.lespecial = lespecial;
 	}
-	public void setLim_cheque_especial(double lim_cheque_especial) {
-		this.lim_cheque_especial = lim_cheque_especial;
+
+	public static ContaCorrente novaCC() {
+		float le = 0;
+
+		System.out.print("A conta possui cheque especial? (S/N): ");
+		boolean ce = read.next().toUpperCase().charAt(0) == 'S';
+
+		if (ce) {
+			System.out.print("Digite o limite de cheque especial: ");
+			le = read.nextFloat();
+		}
+
+		return new ContaCorrente(Conta.novaConta(), ce, le);
 	}
-	public double getLim_saldo_final() {
-		return lim_saldo_final;
+
+	public void adicionarMovimentacao() {
+		boolean k = false, j = false;
+		double sa;
+
+		Movimentacao ob = Movimentacao.novaM();
+		sa = ob.getValor();
+
+		if (ob.isDs()) {
+			if (verificaLimite(sa)) {
+				if (saldo <= sa) {
+					lespecial += saldo - sa;
+					saldo = 0;
+				} else
+					saldo -= sa;
+				
+				System.out.println("Saque efetuado com sucesso!");
+				System.out.println("Seu novo saldo é de: " + saldo);
+			} else {
+				System.out.println("Saldo insuficiente!");
+			}
+		} else {
+			saldo += sa;
+			System.out.println("Depósito efetuado com sucesso!");
+			System.out.println("Seu novo saldo é de: " + saldo);
+		}
 	}
-	public void setLim_saldo_final(double lim_saldo_final) {
-		this.lim_saldo_final = lim_saldo_final;
+
+	public boolean verificaLimite(double sa) {
+		boolean l = false;
+
+		if (sa <= lsaque && sa <= saldo + lespecial) {
+			l = true;
+		}
+
+		return l;
 	}
-	
-	
+
 }

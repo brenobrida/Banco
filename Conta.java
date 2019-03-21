@@ -1,53 +1,72 @@
-import java.util.ArrayList;
+package ExInicial;
 
+import java.util.Scanner;
 
 public class Conta {
-	private String numero;
-	private double lim_saque = 5000;
-	private double saldo;
-	private ArrayList<Movimentacao> movimentacao_list = new ArrayList();
+	public static Scanner read = new Scanner(System.in);
+	
+	protected String numero;
+	protected float saldo, lsaque;
+	protected Movimentacao[] m;
+	
+	public Conta(String numero, float saldo, float lsaque) {
+		this.numero = numero;
+		this.saldo = saldo;
+		this.lsaque = lsaque;
+	}
+	
+	public static Conta novaConta() {
+		System.out.print("Digite o numero da conta: ");
+		String n = read.next();
+		
+		System.out.print("Digite o saldo: ");
+		float s = read.nextFloat();
+		
+		System.out.print("Digite o limite de saque: ");
+		float ls = read.nextFloat();
+		
+		Conta c = new Conta(n, s, ls);
+		
+		return c;
+	}
+	
+	public void adicionarMovimentacao() {			
+			
+	}
+	public boolean verificaLimite(double sa) {
+		return true;
+	}
 
-	public String getNumero() {
-		return numero;
+	public void setSaldo(float saldo) {
+		this.saldo = saldo;
+	}
+
+	public float getLsaque() {
+		return lsaque;
+	}
+
+	public void setLsaque(float lsaque) {
+		this.lsaque = lsaque;
+	}
+
+
+	public void setM(Movimentacao[] m) {
+		this.m = m;
 	}
 
 	public void setNumero(String numero) {
 		this.numero = numero;
 	}
 
-	public double getLim_saque() {
-		return lim_saque;
+	public Movimentacao[] getM() {
+		return m;
 	}
 
-	public void setLim_saque(double lim_saque) {
-		this.lim_saque = lim_saque;
-	}
-
-	public double getSaldo() {
+	public float getSaldo() {
 		return saldo;
 	}
 
-	public void setSaldo(double saldo) {
-		this.saldo = saldo;
+	public String getNumero() {
+		return numero;
 	}
-
-	public ArrayList<Movimentacao> getMovimentacao_list() {
-		return movimentacao_list;
-	}
-
-	public void setMovimentacao_list(ArrayList<Movimentacao> movimentacao_list) {
-		this.movimentacao_list = movimentacao_list;
-	}
-
-	String gerar_extrato() {
-		String str = "Estrato da conta " + this.numero + ":\n";
-
-		for(int i = 0; i < movimentacao_list.size(); i++) {
-			str += "	" + movimentacao_list.get(i).getDescricao() + "\n";
-		}
-		
-		return str;
-	}
-	
-	
 }
