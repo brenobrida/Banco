@@ -16,7 +16,7 @@ public class Conta {
 	}
 	
 	public static Conta novaConta() {
-		System.out.print("Digite o número da conta: ");
+		System.out.print("Digite o numero da conta: ");
 		String n = read.next();
 		
 		System.out.print("Digite o saldo: ");
@@ -28,6 +28,38 @@ public class Conta {
 		Conta c = new Conta(n, s, ls);
 		
 		return c;
+	}
+	
+	public void adicionarMovimentacao() {			
+			
+	}
+
+	public float getSaldo() {
+		return saldo;
+	}
+
+	public void setSaldo(float saldo) {
+		this.saldo = saldo;
+	}
+
+	public float getLsaque() {
+		return lsaque;
+	}
+
+	public void setLsaque(float lsaque) {
+		this.lsaque = lsaque;
+	}
+
+	public Movimentacao[] getM() {
+		return m;
+	}
+
+	public void setM(Movimentacao[] m) {
+		this.m = m;
+	}
+
+	public void setNumero(String numero) {
+		this.numero = numero;
 	}
 
 	public Movimentacao[] getM() {
