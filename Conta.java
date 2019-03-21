@@ -33,9 +33,8 @@ public class Conta {
 	public void adicionarMovimentacao() {			
 			
 	}
-
-	public float getSaldo() {
-		return saldo;
+	public boolean verificaLimite(double sa) {
+		return true;
 	}
 
 	public void setSaldo(float saldo) {
@@ -49,28 +48,3 @@ public class Conta {
 	public void setLsaque(float lsaque) {
 		this.lsaque = lsaque;
 	}
-
-	public Movimentacao[] getM() {
-		return m;
-	}
-
-	public void setM(Movimentacao[] m) {
-		this.m = m;
-	}
-
-	public void setNumero(String numero) {
-		this.numero = numero;
-	}
-
-	public Movimentacao[] getM() {
-		return m;
-	}
-
-	public float getSaldo() {
-		return saldo;
-	}
-
-	public String getNumero() {
-		return numero;
-	}
-}

@@ -13,7 +13,7 @@ public class ContaPoupanca extends Conta{
 	}
 	
 	public static ContaPoupanca novaCP() {
-		System.out.print("Digite a variação: ");
+		System.out.print("Digite a variaÃ§Ã£o: ");
 		int v = read.nextInt();
 		
 		System.out.print("Digite o valor de rendimento mensal: ");
@@ -32,31 +32,28 @@ public class ContaPoupanca extends Conta{
 		sa = ob.getValor();
 	
 		if(k) {
-			j = verificaLimite();
+
+			j = verificaLimite(sa);
+
 			if(j && (saldo - sa) > 0) {
 				saldo -=  sa;
 				System.out.println("Saque efetuado com sucesso!");
-				System.out.println("Seu novo saldo � de: "+saldo);
+				System.out.println("Seu novo saldo é de: "+saldo);
 			}else {
 				System.out.println("Saldo insuficiente!");
 			}
 		}else {
 			saldo +=  sa;
-			System.out.println("Dep�sito efetuado com sucesso!");
-			System.out.println("Seu novo saldo � de: "+saldo);
+			System.out.println("Depósito efetuado com sucesso!");
+			System.out.println("Seu novo saldo é de: "+saldo);
 		}
 	}
 	
-	public boolean verificaLimite() {
+	public boolean verificaLimite(double sa) {
 		boolean l = false;
 		
-		Movimentacao ob = Movimentacao.novaM();
-		double sa = ob.getValor();
-		
-		Conta obc = Conta.novaConta();
-		double ls = obc.getLsaque();
-		
-		if(sa <= ls) {
+		if(sa <= saldo) {
+
 			l = true;
 		}
 		
