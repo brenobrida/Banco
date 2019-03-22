@@ -108,14 +108,16 @@ public class Banco {
 				if (m.isDs())
 					System.out.println(m.getDescricao() + " - " + m.getValor());
 			}
+      
 			System.out.println("-------------------------");
-
-			System.out.println("Depositos:\n");
+			
+      System.out.println("Depositos:\n");
 			for (Movimentacao m : ac[pos].getM()) {
 				if (!m.isDs())
 					System.out.println(m.getDescricao() + " - " + m.getValor());
 			}
-			System.out.println("\n");
+			
+      System.out.println("\n");
 		} else
 			System.out.println("Conta nao encontrada!\n");
 	}

@@ -31,7 +31,6 @@ public class Conta {
 			
 	}
 	public boolean verificaLimite(double sa) {
-		return true;
 	}
 
 	public void setSaldo(float saldo) {
@@ -50,8 +49,8 @@ public class Conta {
 		return numero;
 	}
 
-	public float getSaldo() {
-		return saldo;
+	public void setSaldo(float saldo) {
+		this.saldo = saldo;
 	}
 
 	public Movimentacao[] getM() {
