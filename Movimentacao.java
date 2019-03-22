@@ -12,20 +12,6 @@ public class Movimentacao{
 		this.valor = valor;
 		this.ds = ds;
 	}
-	
-	
-	public static Movimentacao novaM() {
-		System.out.print("Digite a descricao: ");
-		String d = read.next();
-		
-		System.out.print("Digite o valor: ");
-		float v = read.nextFloat();
-		
-		System.out.print("Saque ou deposito? (S/D): ");
-		boolean ds = read.next().toUpperCase().charAt(0) == 'S';
-			
-		return new Movimentacao(d, v, ds);
-	}
 
 	public String getDescricao() {
 		return descricao;

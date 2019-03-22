@@ -2,12 +2,11 @@ package ExInicial;
 
 public class PessoaFisica extends Cliente {
 
-	int cpf = 0;
-	String estcivil = null;
+	String cpf, ecivil;
 	
-	public PessoaFisica(String nome,String endereco, int telefone, String email, int cpf, String estcivil){
-		super(nome, endereco, email, telefone);
+	public PessoaFisica(Cliente c, String cpf, String estcivil){
+		super(c.nome, c.endereco, c.email, c.telefone);
 		this.cpf = cpf;
-		this.estcivil = estcivil;
+		this.ecivil = estcivil;
 	}
 }

@@ -2,10 +2,10 @@ package ExInicial;
 
 public class PessoaJuridica  extends Cliente{
 
-	int CNPJ = 0;
+	int cnpj = 0;
 	
-	public PessoaJuridica(String nome,String endereco, int telefone, String email, int cnpj){
-		super(nome, endereco, email, telefone);
-		this.CNPJ = cnpj;
+	public PessoaJuridica(Cliente c, int cnpj){
+		super(c.nome, c.endereco, c.email, c.telefone);
+		this.cnpj = cnpj;
 	}
 }
