@@ -13,7 +13,7 @@ public class Banco {
 		ac = new Conta[q];
 	}
 
-	public Banco novoBanco() {
+	public static Banco novoBanco() {
 		System.out.print("Digite o nome do banco: ");
 		String n = read.next();
 
@@ -26,10 +26,10 @@ public class Banco {
 	private int consultarPos() {
 		int k = -1;
 
-		System.out.print("Número da conta: ");
-		String n = read.next();
+		System.out.print("Numero da conta: ");
+		int n = read.nextInt();
 
-		for (int j = 0; j <= i; j++) {
+		for (int j = 0; j < i; j++) {
 			if (ac[j].getNumero() == n)
 				k = j;
 		}
@@ -41,20 +41,21 @@ public class Banco {
 		int op;
 
 		do {
-			System.out.println("Menu:\n\n 1 - Conta Corrente\n 2 - Conta Poupança\nOpção: ");
+			System.out.print("Menu:\n 1 - Conta Corrente\n 2 - Conta Poupanca\nOpcao: ");
 			op = read.nextInt();
 		} while (op < 1 || op > 2);
 
 		switch (op) {
 		case 1:
-			ac[i] = ContaCorrente.novaCC();
+			ac[i] = ContaCorrente.novaCC(i);
 			i++;
 			break;
 		case 2:
-			ac[i] = ContaPoupanca.novaCP();
+			ac[i] = ContaPoupanca.novaCP(i);
 			i++;
 			break;
 		}
+		System.out.println("Conta criada com sucesso!\n");
 	}
 
 	public void excluirConta() {
@@ -63,19 +64,26 @@ public class Banco {
 		int pos = consultarPos();
 
 		if (pos != -1) {
-			for (int j = pos; j < i; j++) {
+			for (int j = pos; j < i - 1; j++) {
 				ac[j] = ac[j + 1];
 			}
-
+			
+			i--;
 			ac[i] = null;
+			
+			System.out.println("Conta excluida com sucesso!\n");
 		} else
-			System.out.println("Conta n�o encontrada!\n");
+			System.out.println("Conta nao encontrada!\n");
 	}
 
 	public void listarContas() {
-		for (int j = 0; j <= i; j++) {
-			System.out.println(ac[j].getNumero());
+		System.out.println("Contas cadastradas: ");
+		
+		for (int j = 0; j < i; j++) {
+			System.out.println("Numero da conta: " + ac[j].getNumero());
 		}
+		
+		System.out.println(" ");
 	}
 
 	public void emitirSaldo() {
@@ -84,9 +92,9 @@ public class Banco {
 		int pos = consultarPos();
 
 		if (pos != -1) {
-			System.out.println("Saldo: R$" + ac[i].getSaldo());
+			System.out.println("Saldo: R$" + ac[pos].getSaldo() + "\n");
 		} else
-			System.out.println("Conta n�o encontrada!\n");
+			System.out.println("Conta nao encontrada!\n");
 	}
 
 	public void emitirExtrato() {
@@ -100,30 +108,34 @@ public class Banco {
 				if (m.isDs())
 					System.out.println(m.getDescricao() + " - " + m.getValor());
 			}
+      
 			System.out.println("-------------------------");
-
-			System.out.println("Dep�sitos:\n");
+			
+      System.out.println("Depositos:\n");
 			for (Movimentacao m : ac[pos].getM()) {
 				if (!m.isDs())
 					System.out.println(m.getDescricao() + " - " + m.getValor());
 			}
-			System.out.println("\n");
+			
+      System.out.println("\n");
 		} else
-			System.out.println("Conta n�o encontrada!\n");
+			System.out.println("Conta nao encontrada!\n");
 	}
 
 	public void transacao() {
-		int k;
+		listarContas();
 
-		k = consultarPos();
+		int pos = consultarPos();
 
-		ac[k].adicionarMovimentacao();
-
+		if (pos != -1) {
+			ac[pos].adicionarMovimentacao();
+		} else
+			System.out.println("Conta nao encontrada!\n");
 	}
 
-	public void transferencia(Conta a, Conta b) {
+	public void transferencia() {
 
-		System.out.println("Digite o valor da transfer�ncia:");
+		System.out.println("Digite o valor da transferencia:");
 		double valor = read.nextInt();
 
 		listarContas();
@@ -134,20 +146,18 @@ public class Banco {
 			int pos2 = consultarPos();
 			boolean m = ac[pos1].verificaLimite(valor);
 			
-			
-
 			if (pos2 != -1 && m == true) {
 				ac[pos1].saldo -= valor;
 				ac[pos2].saldo += valor;
-				System.out.println("Transfer�ncia concluida!");
+				System.out.println("Transferencia concluida!");
 
 			} else
-				System.out.println("Conta n�o encontrada!");
+				System.out.println("Conta nao encontrada!");
 
 		} else
-			System.out.println("Conta n�o encontrada!");
+			System.out.println("Conta nao encontrada!");
 
-		System.out.println("Tranfer�ncia n�o concluida!");
+		System.out.println("Tranferencia nao concluida!");
 
 	}
 }

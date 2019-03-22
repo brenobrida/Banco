@@ -12,7 +12,7 @@ public class ContaCorrente extends Conta {
 
 	}
 
-	public static ContaCorrente novaCC() {
+	public static ContaCorrente novaCC(int i) {
 		float le = 0;
 
 		System.out.print("A conta possui cheque especial? (S/N): ");
@@ -23,11 +23,10 @@ public class ContaCorrente extends Conta {
 			le = read.nextFloat();
 		}
 
-		return new ContaCorrente(Conta.novaConta(), ce, le);
+		return new ContaCorrente(Conta.novaConta(i), ce, le);
 	}
 
 	public void adicionarMovimentacao() {
-		boolean k = false, j = false;
 		double sa;
 
 		Movimentacao ob = Movimentacao.novaM();
@@ -40,16 +39,17 @@ public class ContaCorrente extends Conta {
 					saldo = 0;
 				} else
 					saldo -= sa;
-				
-				System.out.println("Saque efetuado com sucesso!");
-				System.out.println("Seu novo saldo é de: " + saldo);
+			
+				System.out.println("Seu saldo da conta corrente eh de: R$" + saldo);
+				System.out.println("Seu saldo de cheque especial eh de: R$" + lespecial);
+				System.out.println("Saque efetuado com sucesso!\n");
 			} else {
-				System.out.println("Saldo insuficiente!");
+				System.out.println("ERRO! Seu limite nao eh suficiente para completar a transacao!\n");
 			}
 		} else {
 			saldo += sa;
-			System.out.println("Depósito efetuado com sucesso!");
-			System.out.println("Seu novo saldo é de: " + saldo);
+			System.out.println("Seu novo saldo eh de: " + saldo);
+			System.out.println("Deposito efetuado com sucesso!\n");
 		}
 	}
 
@@ -62,3 +62,4 @@ public class ContaCorrente extends Conta {
 
 		return l;
 	}
+}

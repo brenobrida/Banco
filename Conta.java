@@ -5,27 +5,24 @@ import java.util.Scanner;
 public class Conta {
 	public static Scanner read = new Scanner(System.in);
 	
-	protected String numero;
+	protected int numero;
 	protected float saldo, lsaque;
 	protected Movimentacao[] m;
 	
-	public Conta(String numero, float saldo, float lsaque) {
+	public Conta(int numero, float saldo, float lsaque) {
 		this.numero = numero;
 		this.saldo = saldo;
 		this.lsaque = lsaque;
 	}
 	
-	public static Conta novaConta() {
-		System.out.print("Digite o numero da conta: ");
-		String n = read.next();
-		
+	public static Conta novaConta(int i) {
 		System.out.print("Digite o saldo: ");
 		float s = read.nextFloat();
 		
 		System.out.print("Digite o limite de saque: ");
 		float ls = read.nextFloat();
 		
-		Conta c = new Conta(n, s, ls);
+		Conta c = new Conta(i, s, ls);
 		
 		return c;
 	}
@@ -34,7 +31,6 @@ public class Conta {
 			
 	}
 	public boolean verificaLimite(double sa) {
-		return true;
 	}
 
 	public void setSaldo(float saldo) {
@@ -48,3 +44,16 @@ public class Conta {
 	public void setLsaque(float lsaque) {
 		this.lsaque = lsaque;
 	}
+
+	public int getNumero() {
+		return numero;
+	}
+
+	public void setSaldo(float saldo) {
+		this.saldo = saldo;
+	}
+
+	public Movimentacao[] getM() {
+		return m;
+	}
+}
