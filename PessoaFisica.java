@@ -6,7 +6,7 @@ public class PessoaFisica extends Cliente {
 	String estcivil = null;
 	
 	public PessoaFisica(String nome,String endereco, int telefone, String email, int cpf, String estcivil){
-		super(nome, endereco, telefone, email);
+		super(nome, endereco, email, telefone);
 		this.cpf = cpf;
 		this.estcivil = estcivil;
 	}
